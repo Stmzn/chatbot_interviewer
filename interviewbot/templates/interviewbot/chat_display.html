@@ -1,0 +1,13 @@
+{% if success == "False" %}
+	{{ success }}
+{% endif %}
+{% if success == "True" %}
+	<div class= 'right'>
+		{{ text }}
+	</div>
+	{% if continue %}
+		<div class = 'left'>
+			{{ question }}
+		</div>
+	{% endif %}
+{% endif %}	

@@ -1,0 +1,40 @@
+{% extends "interviewbot/base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block formcontent %}
+	<div class='row'>
+		<div class='col-sm-5' style='margin-left: 10px'>
+			<div class = "row" style="text-align: center; height:40px; background-color: #718f97; line-height: 40px; margin-left: 1px; margin-right: 1px; font-size: 25px;">
+				Application Result
+			</div>
+			<div style=' height: 65vh; border-top: none; background-color: #dbdbdb;'>
+				<div class = "row">
+					<div class='col-sm-5 applicant-box'>
+						ID
+					</div>
+					<div class='col-sm-5 applicant-box'>
+						Status
+					</div>
+				</div>
+				{% if output %}
+					{% for i in output %}
+						<div class = "row">
+							<div class='col-sm-5 applicant-box'>
+								{{ i.id }}
+							</div>
+							<div class='col-sm-5 applicant-box'>
+								{{ i.status }}
+							</div>
+						</div>
+					{% endfor %}
+				{% endif %}
+			</div>
+		</div>
+	</div>
+	<div style='margin-left: 150px;'>
+		<a href="{% url 'interview:redirect_interview' %}"><img src="{% static 'images/enter.png' %}"></a>
+		{% if error %}
+		<div> error </div>
+		{% endif %}
+	</div>
+{% endblock %}

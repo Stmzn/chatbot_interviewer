@@ -1,0 +1,11 @@
+{% extends "interviewbot/base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block formcontent %}
+	<img src = "{% static 'images/LOGO2.png' %}" class = 'main-image center' />
+	{% if notification %}
+		<div style="text-align: center;font-size: 35px;color: green;font-weight: 100;font-family: sans-serif;">{{ notification }}</div>
+	{% else %}
+		<div style="text-align: center;font-size: 35px;color: green;font-weight: 100;font-family: sans-serif;"></div>
+	{% endif %}
+{% endblock %}

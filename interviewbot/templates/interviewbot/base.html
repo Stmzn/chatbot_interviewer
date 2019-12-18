@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+	<head>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+	</head>
+	<body>
+		<nav class="navbar navbar-inverse">
+		  <div class="container-fluid">
+		    <ul class="nav navbar-nav">
+		    	<li class="heading-button"><a href="{% url 'interview:home' %}">Home</a></li>
+		    	<li class="heading-button"><a href="{% url 'interview:personaldetails' %}">Apply for Job</a></li>
+		    	<li class="heading-button"><a href="{% url 'interview:temp2' %}">Interview</a></li>
+		    	<li class="heading-button"><a href="{% url 'interview:about' %}">About Us</a></li>
+		    </ul>
+		    <div style="margin-left: 95%;font-size: 20px; margin-top: 17px; ">
+			    <a class="nav-item nav-link" href="{% url 'logout' %}" style="color: white">Logout</a>
+			</div>
+		  </div>
+		</nav>
+		{% block formcontent %}{% endblock %}		
+	</body>
+
+</html>

@@ -1,0 +1,76 @@
+{% extends "interviewbot/base2.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block formcontent %}
+
+	<div class="row" style='text-align: center;background-color: #718f97;line-height: 50px; margin-top: 40px; font-size: 25px; margin-left: 20px; margin-right: 20px; font-weight: bold; color:white'>
+		Interview Results
+	</div>
+	<div style='background-color: #dbdbdb; height:540px; padding-left: 20px;margin-left: 20px; margin-right: 20px; overflow: scroll;'>
+		<div class="row" style='margin-right: auto; margin-left: auto;'>
+			<div class="col-sm-2 interview-box">
+				ID
+			</div>
+			<div class="col-sm-2 interview-box">
+				Interview Number
+			</div>
+			<div class="col-sm-2 interview-box">
+				Job
+			</div>
+		</div>
+		{% for i in output %}
+			<div class="row" id = {{ i.hidden_id }} style='margin-right: auto; margin-left: auto;'>
+				<div class="col-sm-2 interview-box">
+					{{ i.id }}
+				</div>
+				<div class="col-sm-2 interview-box">
+					{{ i.interview_number }}
+				</div>
+				<div class="col-sm-2 interview-box">
+					{{ i.job }}
+				</div>
+				{% if i.status %}
+					<div class="col-sm-2 interview-box">
+						{{ i.status }}
+					</div>
+				{% else %}
+					<button class="col-sm-2 interview-box" value = {{ i.hidden_id }} onclick="set_accept(value)">
+						Accept
+					</button>
+					<button class="col-sm-2 interview-box" value = {{ i.hidden_id }} onclick="set_reject(value)">
+						Reject
+					</button>
+				{% endif %}
+			</div>
+		{% endfor %}
+	</div>
+	<script>
+		function set_accept(value) {
+			console.log('wow');
+    		$.ajax({                       // initialize an AJAX request
+				url: "{% url 'interview:set_accept' %}",                    
+				data: {
+					'value': value
+				},
+				success: function (data) {   // `data` is the return of the `load_cities` view function
+					$("#"+value).remove();
+				}
+			});  
+		}
+		function set_reject(value) {
+			console.log('wow');
+    		$.ajax({                       // initialize an AJAX request
+				url: "{% url 'interview:set_reject' %}",                    
+				data: {
+					'value': value
+				},
+				success: function (data) {   // `data` is the return of the `load_cities` view function
+					$("#"+value).remove();
+				}
+			});  
+		}
+
+	</script>
+
+{% endblock %}
+

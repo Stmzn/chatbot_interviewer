@@ -1,0 +1,49 @@
+{% extends "interviewbot/base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block formcontent %}
+	<div class = 'row'>
+		<div class="col-md-2">
+		</div>
+		<div class="col-md-8">			
+			<img src = "{% static 'images/LOGO2.png' %}" class = 'center' />
+			<form method="post" enctype="multipart/form-data" action="{% url 'interview:personaldetails' %}" >
+				{% csrf_token %}
+				<div style = "display:flex">
+					<div class = 'input_text'>
+						<img src = "{% static 'images/first name.png' %}" /><br>
+						<input type="text" name="firstname" class = 'textinput' value = "{{ firstname }}" >
+					</div>
+					<div class = 'input_file' style= "margin-left: 300px">
+						<img src = "{% static 'images/cv.png' %}" /><br>
+						<input type="file" name="file" class = 'fileinput'>
+					</div>
+				</div>
+				<div style = "display: flex">
+					<div class = 'input_text'>
+						<img src = "{% static 'images/email.png' %}" /><br>
+						<input type="text" name="email" class = 'textinput' value = "{{ email }}">
+					</div>
+					<div class = 'resume_category' style= "margin-left: 300px">
+						<select name='option_select'>
+						    <option value="Python">Python Developer</option>
+						 	<option value="Java">Java Developer</option>
+						</select>
+					</div>
+				</div>
+				<div style = "display: flex">
+					<div class = 'input_text'>
+						<img src = "{% static 'images/interview.png' %}" /><br>
+						<input type="text" name="interviewnumber" class = 'textinput' value = "{{ interviewnumber }}">
+					</div>
+					<div class = 'input_text' style="margin-left: 460px">
+						<button type="submit" style="background-color: transparent; "><img src="{% static 'images/apply.png' %}" style='height: 75px;'></button>
+						{% if error %}<p class = "Error" style = "color:red; font-size: 25px; padding-top:20px;"><strong>{{ error }}</strong></p>{% endif %}
+					</div>
+				</div>
+			</form>
+			</div>	
+		<div class="col-md-2">
+		</div>
+	</div>	
+{% endblock %}
